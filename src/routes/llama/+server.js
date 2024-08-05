@@ -13,15 +13,15 @@ let headers = {
 };
 
 const validLanguages = [
-    'english',
-    'indonesian',
-    'indian',
-    'chinese',
-    'japanese',
-    'korean',
-    'france',
-    'polish',
-    'vietnamese'
+	'english',
+	'indonesian',
+	'indian',
+	'chinese',
+	'japanese',
+	'korean',
+	'france',
+	'polish',
+	'vietnamese'
 ];
 
 export async function POST({ request, platform }) {
@@ -29,9 +29,12 @@ export async function POST({ request, platform }) {
 	const { username, language } = await request.json();
 
 	if (!validLanguages.includes(language)) {
-        	return json({ error: 'invalid language specified, please pass a valid language.' }, { status: 400 });
-    	}
-	
+		return json(
+			{ error: 'invalid language specified, please pass a valid language.' },
+			{ status: 400 }
+		);
+	}
+
 	if (GITHUB_API_KEY) {
 		headers['Authorization'] = `token ${GITHUB_API_KEY}`;
 	}
@@ -148,8 +151,8 @@ export async function POST({ request, platform }) {
 			prompt = `Hãy đưa ra một lời châm chọc ngắn gọn và tàn nhẫn bằng tiếng lóng cho hồ sơ GitHub sau: ${username}. Đây là chi tiết: "${JSON.stringify(datas)}"`;
 			break;
 		default: // english and any other undefined languages
-		        prompt = `give a short and harsh roasting for the following github profile: ${username}. Here are the details: "${JSON.stringify(datas)}"`;
-		        break;
+			prompt = `give a short and harsh roasting for the following github profile: ${username}. Here are the details: "${JSON.stringify(datas)}"`;
+			break;
 	}
 
 	// answerdebug += prompt + '\n';

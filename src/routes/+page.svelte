@@ -57,7 +57,6 @@
 	function handleKeyDown(event) {
 		event.key === 'Enter' && handleRoast();
 	}
-
 </script>
 
 <svelte:head>
